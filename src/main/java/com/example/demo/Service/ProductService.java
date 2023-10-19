@@ -4,6 +4,7 @@ import com.example.demo.Entity.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface ProductService {
@@ -17,13 +18,13 @@ public interface ProductService {
     // Read operation
     List<Product> fetchProductList();
 
-    // Update operation
-    Product updateProduct(Product Product);
 
     // Delete operation
-    String deleteProductById(int pid);
+    String deleteProductById(Integer pid);
 
     Product getProductByName(String name);
+
+   public Product getProductById(Integer pid);
 }
 
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductImp implements ProductService {
@@ -25,35 +26,36 @@ public class ProductImp implements ProductService {
     }
 
     @Override
-    public List<Product> fetchProductList(){
+    public List<Product> fetchProductList() {
         return productRepo.findAll();
     }
 
 
     @Override
-    public Product updateProduct(Product Product) {
-        Product existingProduct = productRepo.findById(Product.getPid()).orElse(null);
-        existingProduct.setName(Product.getName());
-        existingProduct.setQuantity(Product.getQuantity());
-        existingProduct.setPrice(Product.getPrice());
-        return productRepo.save(existingProduct);
-    }
+    public String deleteProductById(Integer pid) {
+        if(productRepo.existsById(pid)){
+            productRepo.deleteById(pid);
+            return "product removed with ID no. !! " + pid;
 
-    @Override
-    public String deleteProductById(int pid) {
-         productRepo.deleteById(pid);
-        return "product removed !! " + pid;
+
+        }
+        return  ("No Product Found");
 
     }
 
     @Override
     public Product getProductByName(String name) {
+
         return productRepo.getProductByName(name);
     }
 
+    @Override
+    public Product getProductById(Integer pid) {
+      return productRepo.findById(pid).get();
 
+
+    }
 }
-
 
 
 

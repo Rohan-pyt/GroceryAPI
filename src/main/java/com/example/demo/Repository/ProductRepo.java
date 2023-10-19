@@ -12,4 +12,5 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
 
      Product getProductByName(String name);
 
+
 }

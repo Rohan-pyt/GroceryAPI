@@ -9,16 +9,30 @@ import lombok.*;
     @Entity
     @Table(name="product")
     public class Product {
+        @Override
+        public String toString() {
+            return "Product{" +
+                    "pid=" + pid +
+                    ", name='" + name + '\'' +
+                    ", quantity=" + quantity +
+                    ", price=" + price +
+                    '}';
+        }
+
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private int pid;
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer pid;
+
+
+        private User user;
+
         private String name;
 
-        public int getPid() {
+        public Integer getPid() {
             return pid;
         }
 
-        public void setPid(int pid) {
+        public void setPid(Integer pid) {
             this.pid = pid;
         }
 
